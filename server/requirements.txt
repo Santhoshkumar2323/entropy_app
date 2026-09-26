@@ -1,0 +1,11 @@
+fastapi
+uvicorn[standard]
+psycopg[binary,pool]
+redis
+pyjwt
+bcrypt
+slowapi
+python-dotenv
+faker
+pytest
+httpx
