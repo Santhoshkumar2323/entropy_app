@@ -164,27 +164,35 @@ input:focus, textarea:focus { outline: none; border-color: var(--orange); }
 .avatar-dropdown .logout-item { color: var(--danger); border-top: 1px solid var(--border); }
 
 /* ---------- body / sidebar (30% structure tone) ---------- */
-
-.body { display: flex; }
-.leftnav {
-  width: 170px;
-  padding: 24px 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  background: var(--surface);
-  border-right: 1px solid var(--border);
-  min-height: calc(100vh - 53px);
+.content {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 24px 24px 90px;
 }
-.leftnav a {
+
+.bottomnav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 64px;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  padding: 12px 0;
+  z-index: 10;
+}
+.bottomnav a {
   color: var(--text);
-  font-weight: 500;
-  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
   border-radius: 8px;
 }
-.leftnav a:hover { background: var(--orange-soft); text-decoration: none; color: var(--orange); }
-.content { flex: 1; max-width: 600px; padding: 24px; }
-
+.bottomnav a:hover { color: var(--orange); background: var(--orange-soft); }
 /* ---------- post card ---------- */
 
 .post-card {

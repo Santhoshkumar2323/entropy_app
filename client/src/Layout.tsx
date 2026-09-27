@@ -4,6 +4,33 @@ import { logout } from "./api";
 import { useAuth } from "./AuthContext";
 import Logo from "./Logo";
 
+function HomeIcon() {
+  return (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M3 11l9-8 9 8" />
+      <path d="M5 10v10h14V10" />
+    </svg>
+  );
+}
+
+function ExploreIcon() {
+  return (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="9" />
+      <path d="M15.5 8.5l-2 5-5 2 2-5z" />
+    </svg>
+  );
+}
+
+function ProfileIcon() {
+  return (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="8" r="4" />
+      <path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7" />
+    </svg>
+  );
+}
+
 export default function Layout() {
   const { user, setUser } = useAuth();
   const [q, setQ] = useState("");
@@ -66,16 +93,16 @@ export default function Layout() {
           <Link to="/login" className="login-link">Log in</Link>
         )}
       </header>
-      <div className="body">
-        <nav className="leftnav">
-          <Link to="/">Home</Link>
-          <Link to="/explore">Explore</Link>
-          {user && <Link to={`/u/${user.username}`}>Profile</Link>}
-        </nav>
-        <main className="content">
-          <Outlet />
-        </main>
-      </div>
+
+      <main className="content">
+        <Outlet />
+      </main>
+
+      <nav className="bottomnav">
+        <Link to="/" aria-label="Home"><HomeIcon /></Link>
+        <Link to="/explore" aria-label="Explore"><ExploreIcon /></Link>
+        {user && <Link to={`/u/${user.username}`} aria-label="Profile"><ProfileIcon /></Link>}
+      </nav>
     </div>
   );
 }
