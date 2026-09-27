@@ -52,7 +52,7 @@ def _set_cookie(response: Response, user_id: int) -> None:
         COOKIE,
         token,
         httponly=True,
-        samesite="lax",
+        samesite="none",
         secure=settings.COOKIE_SECURE,
         max_age=int(expires.total_seconds()),
         path="/",
@@ -75,7 +75,6 @@ def _user_from_request(request: Request):
 
 
 def optional_user(request: Request):
-    """Logged-in user or None. Used by endpoints that work for guests too."""
     return _user_from_request(request)
 
 
