@@ -9,6 +9,59 @@ A micro-posting app built to practice a real backend architecture — caching, f
 
 The backend is on a free tier and sleeps after 15 minutes of no traffic. The first request after that can take up to a minute.
 
+---
+
+## Application Walkthrough & Interface Gallery
+
+The interactive layout of the Entropy platform—spanning real-time relational feed generation and session authentication down to full-text database query indexing.
+
+
+<table width="100%">
+  <!-- Row 1: Top Flagship Hero Image (Personalized Home Feed) -->
+  <tr>
+    <td align="center" valign="top" colspan="2" width="100%">
+      <img src="output/personalized-home-feed.png" alt="Dynamic Following Feed Generation & Social Graph Recommendations" style="max-width: 100%; border-radius: 6px; border: 1px solid #ddd;" />
+      <br />
+      <strong>1. Personalized Chronological Feed Feed Generation & Contextual Discovery</strong>
+    </td>
+  </tr>
+
+  <!-- Row 2: Grid Part 1 - Main Layout vs Targeted Profile View -->
+  <tr>
+    <td align="center" valign="top" width="50%">
+      <img src="output/main-feed-timeline.png" alt="Centralized Microblogging Feed Dashboard & Interactive Social Timeline" style="max-width: 100%; border-radius: 6px; border: 1px solid #ddd;" />
+      <br />
+      <strong>2. Centralized Microblogging Composer Dashboard & Social Timeline</strong>
+    </td>
+    <td align="center" valign="top" width="50%">
+      <img src="output/main-feed.png" alt="Dynamic User Profile Index, Social Graph Metrics, & Filtered Post History" style="max-width: 100%; border-radius: 6px; border: 1px solid #ddd;" />
+      <br />
+      <strong>3. Dynamic Target Profile Index & Relation Social Graph Counts</strong>
+    </td>
+  </tr>
+
+  <!-- Row 3: Grid Part 2 - Search Queries vs Session Authentication -->
+  <tr>
+    <td align="center" valign="top" width="50%">
+      <img src="output/search-discovery-results.png" alt="Full-Text Search Discovery Engine with Multi-Entity Filtering" style="max-width: 100%; border-radius: 6px; border: 1px solid #ddd;" />
+      <br />
+      <strong>4. Full-Text Database Search Query Indexing & Multi-Entity Filters</strong>
+    </td>
+    <td align="center" valign="top" width="50%">
+      <img src="output/auth-user-profile.png" alt="Session-Authenticated User Dashboard & Zero-State Handling" style="max-width: 100%; border-radius: 6px; border: 1px solid #ddd;" />
+      <br />
+      <strong>5. Session-Authenticated Account State & Empty-State Management</strong>
+    </td>
+  </tr>
+</table>
+
+
+
+
+
+
+
+
 ## How it works
 
 When someone posts, the post is saved to Postgres first — that's the permanent copy. Right after that, the post's ID is pushed onto a Redis list for the author and each of their followers. When anyone opens their home feed, the app reads that list from Redis and only then looks up the actual post text from Postgres. Postgres is never queried for the feed itself unless the Redis list is empty, in which case it's rebuilt from Postgres and cached again.
